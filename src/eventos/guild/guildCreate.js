@@ -17,7 +17,7 @@ module.exports = async(netcatalfa, guild) => {
 
     let owner = await guild.fetchOwner();
 
-    let mensajedealerta = "**:rotating_light: | ALERTA:** Actividad sospechosa detectada en mis bases de datos.\nMe han invitado a un servidor no autorizado!\n**ID del servidor no autorizado:** " + `${guild.id}` + "\n**Nombre del servidor no autorizado: **" + `${guild.name}` + `\n**ID del dueño del servidor:** ${owner.id}` + `\n**Dueño del servidor no autorizado:** ${owner}` + "\nPing: " + `<@&${rol}>.`;
+    let mensajedealerta = "**:rotating_light: | ALERTA:** Actividad sospechosa detectada en mis bases de datos.\nMe han invitado a un servidor no autorizado!\n**ID del servidor no autorizado:** " + `${guild.id}` + "\n**Nombre del servidor no autorizado: **" + `${guild.name}` + `\n**ID del dueño del servidor:** ${owner.id}` + `\n**Dueño del servidor no autorizado:** ${owner}` + "\nPing: " + `<@&${rol.id}>.`;
 
     canal.send(`${mensajedealerta}`);
 
