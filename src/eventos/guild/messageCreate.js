@@ -23,7 +23,7 @@ module.exports = async (Client, message) => {
         }
 
         try {
-            //ejecutar el comando
+            
            COMANDO.execute(Client, message, ARGS, prefix);
         } catch (e) {
             message.reply(`**Ha ocurrido un error al ejecutar el comando \`${COMANDO.NAME}\`**\n*Mira la consola para más detalle.*`);
@@ -34,9 +34,3 @@ module.exports = async (Client, message) => {
     }
 }
 
-/*
-╔═════════════════════════════════════════════════════╗
-║    || - || Desarrollado por dewstouh#1088 || - ||   ║
-║    ----------| discord.gg/MBPsvcphGf |----------    ║
-╚═════════════════════════════════════════════════════╝
-*/
