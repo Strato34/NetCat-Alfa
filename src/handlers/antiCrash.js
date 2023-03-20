@@ -24,9 +24,3 @@ module.exports = (Client) => {
     process.on('SIGUSR2', () => process.exit());
 }
 
-/*
-╔═════════════════════════════════════════════════════╗
-║    || - || Desarrollado por dewstouh#1088 || - ||   ║
-║    ----------| discord.gg/MBPsvcphGf |----------    ║
-╚═════════════════════════════════════════════════════╝
-*/
