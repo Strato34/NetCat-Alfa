@@ -11,7 +11,7 @@ module.exports = {
                     { name: 'Comandos Diagonales', value: 'slash' },
                     { name: 'Eventos', value: 'events' },
                     { name: 'Handlers', value: 'handlers' },
-                    { name: 'Todos los modules (reboot completo)', value: 'all'},
+                    { name: 'Todos los modulos (reboot completo)', value: 'all'},
                 )),
     async execute(Client, interaction, prefix, GUILD_DATA) {
         const { ownerid } = require('../../core/socket.json');
