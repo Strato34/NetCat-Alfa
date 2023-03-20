@@ -1,4 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const db = require('megadb');
+const staffroledb = new db.crearDB('staffroledb');
 
 module.exports = {
     CMD: new SlashCommandBuilder()
