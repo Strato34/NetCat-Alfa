@@ -34,7 +34,7 @@ module.exports = {
 		
 			const edit = new EmbedBuilder()
 				.setDescription(':stopwatch: Evaluando...')
-				.setColor('0x7289DA');
+				.setColor('Red');
 			interaction.reply({ embeds: [edit] }).then(async codigo => {
 				try {
 					let code = interaction.options.getString('codigo');
@@ -65,7 +65,7 @@ module.exports = {
                                 {  name: ':file_folder: Tipo', value: `\`\`\`js\n${mayuscula(tipo)}\n\`\`\`` },
                                 {  name: ':stopwatch: Tiempo', value: `\`\`\`fix\n${Date.now() - tiempo1}ms\n\`\`\`` },
                             ])
-							.setColor('0x7289DA');
+							.setColor('Red');
 							
 		interaction.editReply({ embeds: [embed] });
 						});
@@ -77,7 +77,7 @@ module.exports = {
                             {  name: ':file_folder: Tipo', value: `\`\`\`js\n${mayuscula(tipo)}\n\`\`\`` },
                             {  name: ':stopwatch: Tiempo', value: `\`\`\`fix\n${Date.now() - tiempo1}ms\n\`\`\`` },
                         ])
-						.setColor('0x7289DA');
+						.setColor('Red');
 		interaction.editReply({ embeds: [embed] });
 					}
 				} catch (err) {
@@ -89,17 +89,17 @@ module.exports = {
                             {  name: ':outbox_tray: Salida', value: `\`\`\`js\n${err}\n\`\`\`` },
                             {  name: ':file_folder: Tipo', value: `\`\`\`js\nError\n\`\`\`` },
                         ])
-						.setColor('0xFE2D00');
+						.setColor('Red');
 		interaction.editReply({ embeds: [embed] });
 				};
 			});
     
 }
 if(interaction.user.id !== ownerid) {
-    interaction.reply({ content:"**:x: | PERMISO DENEGADO:** Solo el creador del bot puede usar esto!", ephemeral: true}).catch(()=> { null; });
+    interaction.reply({ content:"**<a:netcatemojiincorrecto:1080458827054465075> | PERMISO DENEGADO:** Solo el creador del bot puede usar esto!", ephemeral: true}).catch(()=> { null; });
 }
-if(interaction.user.id === ownerid) {
-	if(!interaction.guild.members.me.permissions.has('Administrator')) return interaction.reply({ content:"**:x: | ERROR:** No tengo permisos suficientes. \nPermisos que me faltan: `Administrator`", ephemeral: true}).catch(()=>{ null;});
+if(interaction.user.id == ownerid) {
+	if(!interaction.guild.members.me.permissions.has('Administrator')) return interaction.reply({ content:"**<a:netcatemojiincorrecto:1080458827054465075> | ERROR:** No tengo permisos suficientes. \nPermisos que me faltan: `Administrator`", ephemeral: true}).catch(()=>{ null;});
     ejecutarcomandoisOK();
 }
         }
