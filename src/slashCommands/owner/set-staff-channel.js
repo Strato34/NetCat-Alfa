@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, ChannelType } = require('discord.js');
 const db = require('megadb');
 const staffchanneldb = new db.crearDB('staffchanneldb');
+const { ownerid } = require('../../core/socket.json');
 
 module.exports = {
     CMD: new SlashCommandBuilder()
@@ -13,6 +14,16 @@ module.exports = {
         .setRequired(true)),
 
         async execute(netcatalfa, interaction) {
-            return interaction.reply("Comando en desarrollo.");
+            let canal = interaction.options.getChannel('canal');
+            if(interaction.user.id !== ownerid) {
+                interaction.reply({ content:`**:x: | PERMISO DENEGADO:** Solo <@${ownerid}> puede usar este comando!`, ephemeral: true}).catch(()=> { null; });
+            }
+            if(!canal) return interaction.reply({ content: "**:x: | ERROR:** El canal introducido no existe en este servidor.", ephemeral: true}).catch(()=> { null; });
+            const staffchannel = await staffchanneldb.obtener("staffchannel");
+            if(!staffchannel) {
+                staffchanneldb.establecer("staffchannel", "ninguno");
+            }
+            staffchanneldb.establecer("staffchannel", `${canal.id}`);
+            interaction.reply(`:white_check_mark: | Se ha establecido correctamente el canal ${canal} como canal del staff del servidor de NetCat.`).catch(()=> { null; });
         }
 }
