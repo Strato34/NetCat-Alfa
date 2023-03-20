@@ -1,6 +1,6 @@
 module.exports = async (Client, interaction) => {
     if (!interaction.guild || !interaction.channel) return;
-    //const GUILD_DATA = await client.db.getGuildData(interaction.guild.id);
+
     if(!interaction.channel) return;
     if(!interaction.channel.permissionsFor(interaction.guild.members.me).has("ViewChannel")) return interaction.reply({ content:"**:x: | ERROR:** No tengo los permisos suficientes.\nPermisos que me faltan: `ViewChannel`", ephemeral: true}).catch(()=> { null; });
     if(!interaction.channel.permissionsFor(interaction.guild.members.me).has("SendMessages")) return interaction.reply({ content:"**:x: | ERROR:** No tengo los permisos suficientes.\nPermisos que me faltan: `SendMessages`", ephemerañ: true}).catch(()=> { null; });
@@ -23,15 +23,8 @@ module.exports = async (Client, interaction) => {
             if(!interaction.member.permissions.has(COMANDO.PERMISSIONS)) return interaction.reply({content: `❌ **No tienes suficientes permisos para ejecutar este comando!**\nNecesitas los siguientes permisos ${COMANDO.PERMISSIONS.map(PERMISO => `\`${PERMISO}\``).join(", ")}`, ephemeral: true})
         }
 
-        //ejecutar el comando
-        //COMANDO.execute(client, interaction, "/", GUILD_DATA);
+
         COMANDO.execute(Client, interaction, "/");
     }
 }
 
-/*
-╔═════════════════════════════════════════════════════╗
-║    || - || Desarrollado por dewstouh#1088 || - ||   ║
-║    ----------| discord.gg/MBPsvcphGf |----------    ║
-╚═════════════════════════════════════════════════════╝
-*/
