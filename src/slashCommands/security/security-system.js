@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const db = require('megadb');
 const securitysystemstatusdb = new db.crearDB('securitysystemstatusdb');
+const staffroledb = new db.crearDB('staffroledb');
 
 module.exports = {
     CMD: new SlashCommandBuilder()
@@ -17,6 +18,28 @@ module.exports = {
             .setDescription('Desactiva el sistema de seguridad en el servidor de NetCat'))),
 
             async execute(netcatalfa, interaction) {
-                return interaction.reply("Sistema de seguridad en desarrollo");
-            }
+                const staffrole = await staffroledb.obtener("staffrole");
+                if(!staffrole) return;
+                let rol = interaction.guild.roles.cache.find(elrol => elrol.id == `${staffrole}`);
+                if(!rol) return;
+                if(!interaction.member.roles.cache.has(rol)) return interaction.reply({ content: "**:x: | PERMISO DENEGADO:** Sólo el staff de este servidor puede usar este comando.", ephemeral: true}).catch(()=> { null; });
+
+                async function subcommand1() {
+                    return;
+                }
+                async function subcommand2() {
+                    return;
+                }
+
+                switch(interaction.options.getSubcommand()) {
+                    case 'enable': {
+                        subcommand1();
+                    }
+                    break;
+                    default:{
+                        subcommand2()
+                    }
+                    break;
+                }
+            }   
 }
