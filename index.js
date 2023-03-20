@@ -1,5 +1,5 @@
 require('dotenv').config();
 require('colors');
-const Bot = require('./structures/Client.js');
+const Bot = require('./src/structures/Client.js');
 new Bot();
 
