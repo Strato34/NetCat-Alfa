@@ -25,13 +25,14 @@ module.exports = {
                 if(!staffrole) return;
                 let rol = interaction.guild.roles.cache.find(elrol => elrol.id == `${staffrole}`);
                 if(!rol) return;
-                if(!interaction.member.roles.cache.has(rol)) return interaction.reply({ content: "**:x: | PERMISO DENEGADO:** Sólo el staff de este servidor puede usar este comando.", ephemeral: true}).catch(()=> { null; });
+                if(!interaction.member.roles.cache.has(rol.id)) return interaction.reply({ content: "**:x: | PERMISO DENEGADO:** Sólo el staff de este servidor puede usar este comando.", ephemeral: true}).catch(()=> { null; });
 
                 async function subcommand1() {
                     const securitysystemstatus = await securitysystemstatusdb.obtener("status");
                     if(!securitysystemstatus) {
                         securitysystemstatusdb.set("status", "OFF");
                     }
+                    if(securitysystemstatus == "ON") return interaction.reply({content:"**:x: | ERROR:** El sistema de seguridad ya está activado en este servidor.", ephemeral: true}).catch(()=> { null; });
                     securitysystemstatusdb.set("status", "ON");
                     return interaction.reply(":white_check_mark: | Se ha activado correctamente el sistema de seguridad en el servidor oficial de NetCat.").catch(()=> { null; });
                 }
@@ -40,6 +41,7 @@ module.exports = {
                     if(!securitysystemstatus) {
                         securitysystemstatusdb.set("status", "OFF");
                     }
+                    if(securitysystemstatus == "OFF") return interaction.reply({content:"**:x: | ERROR:** El sistema de seguridad ya está desactivado en este servidor.", ephemeral: true}).catch(()=> { null; });
                     securitysystemstatusdb.set("status", "OFF");
                     return interaction.reply(":white_check_mark: | Se ha desactivado correctamente el sistema de seguridad en el servidor oficial de NetCat.").catch(()=> { nill; });
                 }
