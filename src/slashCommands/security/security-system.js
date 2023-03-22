@@ -15,7 +15,10 @@ module.exports = {
             .setDescription('Activa el sistema de seguridad en el servidor de NetCat.'))
         .addSubcommand(subcommand2 =>
             subcommand2.setName('disable')
-            .setDescription('Desactiva el sistema de seguridad en el servidor de NetCat'))),
+            .setDescription('Desactiva el sistema de seguridad en el servidor de NetCat')))
+    .addSubcommand(subcommand3 =>
+        subcommand3.setName('status')
+        .setDescription('Comprueba el estado del sistema de seguridad del servidor de NetCat.')),
 
             async execute(netcatalfa, interaction) {
                 const staffrole = await staffroledb.obtener("staffrole");
@@ -25,10 +28,35 @@ module.exports = {
                 if(!interaction.member.roles.cache.has(rol)) return interaction.reply({ content: "**:x: | PERMISO DENEGADO:** Sólo el staff de este servidor puede usar este comando.", ephemeral: true}).catch(()=> { null; });
 
                 async function subcommand1() {
-                    return;
+                    const securitysystemstatus = await securitysystemstatusdb.obtener("status");
+                    if(!securitysystemstatus) {
+                        securitysystemstatusdb.set("status", "OFF");
+                    }
+                    securitysystemstatusdb.set("status", "ON");
+                    return interaction.reply(":white_check_mark: | Se ha activado correctamente el sistema de seguridad en el servidor oficial de NetCat.").catch(()=> { null; });
                 }
                 async function subcommand2() {
-                    return;
+                    const securitysystemstatus = await securitysystemstatusdb.obtener("status");
+                    if(!securitysystemstatus) {
+                        securitysystemstatusdb.set("status", "OFF");
+                    }
+                    securitysystemstatusdb.set("status", "OFF");
+                    return interaction.reply(":white_check_mark: | Se ha desactivado correctamente el sistema de seguridad en el servidor oficial de NetCat.").catch(()=> { nill; });
+                }
+                async function subcommand3() {
+                    const securitysystemstatus = await securitysystemstatusdb.obtener("status");
+                    var status = null;
+                    if(!securitysystemstatus) {
+                        securitysystemstatusdb.set("status", "OFF");
+                    }
+                    if(securitysystemstatus == "ON") {
+                        var status = "**:green_circle: ONLINE :green_circle:**";
+                    }
+                    if(securitysystemstatus == "OFF") {
+                        var status = ":red_circle: OFFLINE :red_circle:";
+                    }
+                    if(!status) return;
+                    return interaction.reply(`Estado del sistema de seguridad del servidor de NetCat: ${status}`).catch(()=> { null; });
                 }
 
                 switch(interaction.options.getSubcommand()) {
@@ -36,8 +64,12 @@ module.exports = {
                         subcommand1();
                     }
                     break;
+                    case 'disable':{
+                        subcommand2();
+                    }
+                    break;
                     default:{
-                        subcommand2()
+                        subcommand3();
                     }
                     break;
                 }
