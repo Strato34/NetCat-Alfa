@@ -2,6 +2,8 @@ const { SlashCommandBuilder, SelectMenuBuilder } = require('discord.js');
 const db = require('megadb');
 const staffroledb = new db.crearDB('staffroledb');
 const securitysystemstatusdb = new db.crearDB('securitysystemstatusdb');
+const antijoinusersstatusdb = new db.crearDB('antijoinusersstatusdb');
+const antojoinbotsstatusdb = new db.crearDB('antijoinbotsstatusdb');
 
 module.exports = {
     CMD: new SlashCommandBuilder()
