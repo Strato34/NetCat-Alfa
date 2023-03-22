@@ -37,6 +37,68 @@ module.exports = {
             .setDescription('Comprueba el estado del sistema anti-join bots'))),
 
                 async execute(netcatalfa, interaction) {
-                    return interaction.reply("Comando en desarrollo");
+                    const staffrole = await staffroledb.obtener("staffrole");
+                    if(!staffrole) return;
+                    let rol = interaction.guild.roles.cache.find(elrol => elrol.id == `${staffrole}`);
+                    if(!rol) return;
+                    if(!interaction.member.roles.cache.has(rol.id)) return interaction.reply({ content: "**:x: | PERMISO DENEGADO:** Sólo el staff de este servidor puede usar este comando.", ephemeral: true}).catch(()=> { null; });
+
+                    const securitysystemstatus = await securitysystemstatusdb.obtener("status");
+                    if(!securitysystemstatus) {
+                        securitysystemstatusdb.set("status", "OFF");
+                    }
+                    if(securitysystemstatus == "OFF") return interaction.reply({ content:"**:x: | ERROR:** El sistema de seguridad está desactivado en este servidor.", ephemeral: true}).catch(()=> { null; });
+
+                    async function subcommandgroup1() {
+                        async function subcommand1() {
+                            return interaction.reply("subcomando1");
+                        }
+
+                        async function subcommand2() {
+                            return interaction.reply("subcomando2");
+                        }
+
+                        switch(interaction.options.getSubcommand()) {
+                            case 'config': {
+                                subcommand1();
+                            }
+                            break;
+                            default:{
+                                subcommand2();
+                            }
+                            break;
+                        }
+                    }
+                    async function subcommandgroup2() {
+                        async function subcommand3() {
+                            return interaction.reply("subcomando3");
+                        }
+
+                        async function subcommand4() {
+                            return interaction.reply("subcomando4");
+                        }
+
+                        switch(interaction.options.getSubcommand()) {
+                            case 'config': {
+                                subcommand3();
+                            }
+                            break;
+                            default:{
+                                subcommand4();
+                            }
+                            break;
+                        }
+                    }
+
+                    switch(interaction.options.getSubcommandGroup()) {
+                        case 'users':{
+                            subcommandgroup1();
+                        }
+                        break;
+                        default:{
+                            subcommandgroup2();
+                        }
+                        break;
+                    }
                 }
 }
