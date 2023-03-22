@@ -5,8 +5,8 @@ module.exports = async Client => {
         Client.application.commands.set(Client.slashArray);
         console.log(`(/) ${Client.slashCommands.size} Comandos Publicados!`.green);
     }
-    var estado = "dnd";
-    Client.user.setActivity({name: `Bot en desarrollo`, type: ActivityType.Playing});
+    var estado = "idle";
+    Client.user.setActivity({name: `a SamuelVM`, type: ActivityType.Listening});
     Client.user.setStatus(`${estado}`);
     console.log(`Bot: ${Client.user.username}\nEstado: ${estado}`);
     
