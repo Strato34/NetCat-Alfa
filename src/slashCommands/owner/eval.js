@@ -73,7 +73,7 @@ module.exports = {
 						const embed = new EmbedBuilder()
                         .addFields([
                             {  name: ':inbox_tray: Entrada', value: `\`\`\`js\n${code.slice(0, 748)}\n\`\`\`` },
-                            {  name: ':outbox_tray: Salida', value: `\`\`\`js\n${txt.replace(Client.token, '🔴|No tengo la autoricacion para revelar eso.').replace(/(bot)/g, 'bot')}\n\`\`\`` },
+                            {  name: ':outbox_tray: Salida', value: `\`\`\`js\n${txt.replace(Client.token, '🔴|No tengo la autorizacion para revelar eso.').replace(/(bot)/g, 'bot')}\n\`\`\`` },
                             {  name: ':file_folder: Tipo', value: `\`\`\`js\n${mayuscula(tipo)}\n\`\`\`` },
                             {  name: ':stopwatch: Tiempo', value: `\`\`\`fix\n${Date.now() - tiempo1}ms\n\`\`\`` },
                         ])
